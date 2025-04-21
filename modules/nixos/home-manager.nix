@@ -1,6 +1,11 @@
-{ pkgs, config, lib, ... }: 
+{ user, version, pkgs, config, lib, ... }: 
 
 {
+
+  home = {
+    stateVersion = version;
+  };
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;

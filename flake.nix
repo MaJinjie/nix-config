@@ -1,5 +1,5 @@
 {
-  description = "Starter Configuration with secrets for MacOS and NixOS";
+  description = "Nix Configuration with secrets for MacOS and NixOS";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     agenix = {
@@ -48,6 +48,8 @@
   outputs = { self, darwin, nixpkgs, ... } @inputs:
     let
       user = "majinjie";
+      version = "24.11";
+
       linuxSystems = [ "x86_64-linux" "aarch64-linux" ];
       darwinSystems = [ "aarch64-darwin" "x86_64-darwin" ];
       allSystems = linuxSystems ++ darwinSystems;
@@ -86,7 +88,7 @@
       darwinConfigurations = forSystems darwinSystems (system:
         darwin.lib.darwinSystem rec {
           inherit system;
-          specialArgs = inputs // { inherit user system; };
+          specialArgs = inputs // {  inherit user system version; };
           modules = import ./hosts/darwin specialArgs;
         }
       );
@@ -94,7 +96,7 @@
       nixosConfigurations = forSystems linuxSystems (system: 
         nixpkgs.lib.nixosSystem rec {
           inherit system;
-          specialArgs = inputs // { inherit user system; };
+          specialArgs = inputs // { inherit user system version; };
           modules = import ./hosts/nixos specialArgs;
         }
       );
