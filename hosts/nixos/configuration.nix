@@ -1,4 +1,4 @@
-{ user, agenix, pkgs, config, lib, ... }: 
+{ user, agenix, pkgs, config, ... }: 
 
 {
   # nix settings
@@ -33,7 +33,7 @@
       efi.canTouchEfiVariables = true;
     };
     initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
-    kernelModules = ["uinput"];
+    kernelModules = ["kvm-intel"];
   };
 
   # timeZone
