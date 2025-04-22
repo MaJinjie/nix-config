@@ -2,6 +2,7 @@
 
 [
   ./configuration.nix
+  ../../modules/nixos
   ../../modules/shared
 
   disko.nixosModules.default

@@ -42,7 +42,7 @@ _hint() {
 }
 
 _prompt() {
-  _print "${MEGENTA}${1}${CLEAR}"
+  _print "${MAGENTA}${1}${CLEAR}"
   read -r "${2}"
 }
 
@@ -88,7 +88,7 @@ check_ssh_keys() {
   else
     _warn "Some SSH keys are missing."
     if [ ! -f /root/.ssh/id_ed25519 ]; then
-      _error "Missing: id_ed25519."
+      _warn "Missing: id_ed25519."
     fi
     if [ ! -f /root/.ssh/id_ed25519.pub ]; then
       _warn "Missing: id_ed25519.pub."
@@ -109,7 +109,7 @@ copy_ssh_keys() {
       if mount --mkdir /dev/$device $MOUNT_SSH_POINT; then
         _info "$DRIVER_NAME drive mounted successfully on /dev/$device."
       else
-        _error "Failed to mount /dev/$device"
+        _warn "Failed to mount /dev/$device"
       fi
     else
       _warn "No device selected."
@@ -208,11 +208,13 @@ prompt_reboot() {
   fi
 }
 
+export -f cleanup_config
+trap 'cleanup_config' EXIT SIGINT SIGTERM
+
 check_env
 download_config
 setup_ssh
 run_disko
 setup_nixos
 install_nixos
-cleanup_config
 prompt_reboot

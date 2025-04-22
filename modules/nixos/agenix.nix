@@ -8,7 +8,7 @@
     "login-passwd" = {
       file = "${secrets}/login-passwd.age";
       mode = "600";
-      ower = "${user}";
+      owner = "${user}";
       group = "users";
     };
   };

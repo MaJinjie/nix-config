@@ -1,4 +1,4 @@
-{ user, agenix, pkgs, config, ... }: 
+{ user, agenix, pkgs, lib, config, ... }: 
 
 {
   # nix settings
@@ -42,8 +42,9 @@
   # network
   networking = {
     hostName = "nixos"; # Define your hostname.
-    useDHCP = false;
-    interfaces."wlp8s0".useDHCP = true;
+    useDHCP = lib.mkDefault true; 
+    networkmanager.enable = true;
+    # interfaces."wlp8s0".useDHCP = true;
   };
 
   # internationalization
@@ -88,7 +89,7 @@
   users.users."${user}" = {
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" ];
-    passwordFile = config.age.secrets."login-passwd.age";
+    passwordFile = config.age.secrets."login-passwd".path;
   };
 
   # fonts
