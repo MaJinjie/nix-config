@@ -1,0 +1,11 @@
+binds {
+    Mod+Return repeat=false { spawn "foot"; }
+    Mod+BackSpace repeat=false { close-window; }
+    Mod+Slash { show-hotkey-overlay; }
+    Mod+Space hotkey-overlay-title="toggle application launcher" { spawn "dms" "ipc" "spotlight" "toggle"; }
+
+    Mod+H { focus-column-or-monitor-left; }
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
+    Mod+L { focus-column-or-monitor-right; }
+}
