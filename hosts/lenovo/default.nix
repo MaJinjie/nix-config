@@ -15,7 +15,7 @@ let
   users.users.default = {
     name = "${user}";
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" ];
     shell = pkgs.fish;
   };
 
@@ -28,6 +28,7 @@ let
       git
       nh
       ripgrep
+      yazi
       input
       fish
       tmux

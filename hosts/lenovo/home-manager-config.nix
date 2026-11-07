@@ -3,8 +3,8 @@ let
   inherit (flake-config) user;
 in
 {
-  home.activation.moveNixConfig = lib.hm.dag.entryBetween [ "writeBoundary" ] [ "linkkGeneration" ] 
-  let
+  home.activation.moveNixConfig = lib.hm.dag.entryBetween [ "writeBoundary" ] [ "linkGeneration" ] 
+  (let
     sourceDir = "/tmp/nix-config";
     targetDir = "/mnt/home/${user}/nix-config"; 
   in
@@ -14,5 +14,5 @@ in
       cp -r ${sourceDir} $(dirname ${targetDir})
       chomod -R u+w ${targetDir}
     fi
-  '';
+  '');
 }
