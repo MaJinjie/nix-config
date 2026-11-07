@@ -45,4 +45,10 @@ in
   programs.firefox = {
     enable = lib.mkDefault true;
   };
+
+  programs.neovim = {
+    enable = lib.mkDefault true;
+    defaultEditor = true;
+    vimAlias = true;
+  };
 }

@@ -1,6 +1,6 @@
 { flake-config, pkgs, ... }:
 let 
-  inherit (flake-config) user;
+  inherit (flake-config) user stateVersion;
   inherit (flake-config) nixosModules homeModules;
 {
   imports = with nixosModules; [
@@ -15,6 +15,7 @@ let
   users.users.default = {
     name = "${user}";
     isNormalUser = true;
+    extraGroups = [ "wheel" ];
     shell = pkgs.fish;
   };
 
@@ -27,12 +28,19 @@ let
       git
       nh
       ripgrep
-      neovim
       input
       fish
       tmux
+      neovim
+      vscode
 
       symlinks
+    ] ++ [
+      ./home-manager-config.nix
     ];
+
+    inherit stateVersion;
   };
+
+  inherit stateVersion;
 }

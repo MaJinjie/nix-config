@@ -31,15 +31,9 @@
     };
   
   };
-  nixSettings = {
-    substituters = [
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
-      "https://cache.nixos.org/"
-    ];
-  };
   outputs = 
     inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } ({ inputs, lib, config, ... }: 
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } ({ inputs, lib, config, moduleWithSystem, ... }: 
     let
       modulesFromDirectoryRecursive = 
         let 
@@ -192,6 +186,6 @@
         darwinModules = flattenModulePath darwinModules;
         homeModules = flattenModulePath homeModules;
         flakeModules = flattenModulePath flakeModules;
-      }
+      };
     });
 }

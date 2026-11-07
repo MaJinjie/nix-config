@@ -29,5 +29,9 @@ in
         };
       };
     };
+    stateVersion = mkOption {
+      type = types.str;
+      description = "This option defines the first version you have installed on this particular machine.";
+    };
   };
 }

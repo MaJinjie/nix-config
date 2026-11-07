@@ -1,4 +1,4 @@
-{ flake-config, lib, config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.programs.neovim;
 in
